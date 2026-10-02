@@ -1,8 +1,10 @@
+import Navbar from "./components/Navbar";
+
 const App = () => {
   return (
-    <div>
-      <h1 className="text-bold text-4xl">Hello, World</h1>
-    </div>
+    <main>
+      <Navbar />
+    </main>
   );
 };
 export default App;
