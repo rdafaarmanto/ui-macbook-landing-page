@@ -65,6 +65,11 @@ const Showcase = () => {
               <h3>4x faster</h3>
               <p>pro rendering performance than M2</p>
             </div>
+            <div className="space-y-2">
+              <p>Up to</p>
+              <h3>1.5x faster</h3>
+              <p>CPU performance than M2</p>
+            </div>
           </div>
         </div>
       </div>
