@@ -1,16 +1,47 @@
-# React + Vite
+# MacBook Pro Landing Page
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive MacBook Pro landing page built with React, GSAP, and Three.js. It features 3D product views, and scroll-based animations
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Product hero section with autoplay video.
+- Interactive 3D MacBook viewer with color and size controls.
+- Scroll-triggered product and performance sections.
+- Feature section with a 3D MacBook model and video screen content.
+- Responsive layout for desktop and mobile screens.
+- Highlight and footer sections.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- Three.js with React Three Fiber and Drei
+- GSAP
+- Zustand
+- Tailwind CSS
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+Install Node.js and npm.
+
+### Install dependencies
+
+```bash
+npm install
+```
+
+### Start the development server
+
+```bash
+npm run dev
+```
+
+## Project Assets
+
+Static images, videos, fonts, and 3D models are stored in `public/`. The app references them from the site root, for example `/videos/hero.mp4` and `/models/macbook-14-transformed.glb`.
+
+## Notes
+
+This project is a visual landing page prototype. Purchase, search, and cart controls are currently presentation elements and are not connected to commerce functionality.
