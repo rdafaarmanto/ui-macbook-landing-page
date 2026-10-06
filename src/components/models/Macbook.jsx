@@ -1,7 +1,56 @@
+import useMacbookStore from "../../store";
+import { noChangeParts } from "../../constants";
 import { useGLTF } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { Color, LinearFilter, VideoTexture } from "three";
 
 export default function MacbookModel(props) {
-  const { nodes, materials } = useGLTF("/models/macbook-transformed.glb");
+  const { color, texture } = useMacbookStore();
+  const { nodes, materials, scene } = useGLTF(
+    "/models/macbook-transformed.glb",
+  );
+  const screenMaterial = useRef(null);
+
+  useEffect(() => {
+    const video = document.createElement("video");
+    Object.assign(video, {
+      src: texture,
+      muted: true,
+      loop: true,
+      playsInline: true,
+      crossOrigin: "anonymous",
+      preload: "auto",
+    });
+
+    const screenTexture = new VideoTexture(video);
+    screenTexture.minFilter = LinearFilter;
+    screenTexture.magFilter = LinearFilter;
+
+    if (screenMaterial.current) {
+      screenMaterial.current.map = screenTexture;
+      screenMaterial.current.needsUpdate = true;
+    }
+
+    video.load();
+    video.play().catch(() => {});
+
+    return () => {
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      screenTexture.dispose();
+    };
+  }, [texture]);
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        if (!noChangeParts.includes(child.name)) {
+          child.material.color = new Color(color);
+        }
+      }
+    });
+  }, [color, scene]);
 
   return (
     <group {...props} dispose={null}>
@@ -94,7 +143,9 @@ export default function MacbookModel(props) {
         geometry={nodes.Object_123.geometry}
         material={materials.sfCQkHOWyrsLmor}
         rotation={[Math.PI / 2, 0, 0]}
-      />
+      >
+        <meshBasicMaterial ref={screenMaterial} />
+      </mesh>
       <mesh
         geometry={nodes.Object_127.geometry}
         material={materials.ZCDwChwkbBfITSW}
